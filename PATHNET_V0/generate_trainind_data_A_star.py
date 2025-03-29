@@ -88,13 +88,26 @@ def save_sample(grid, path, index):
     file_path = os.path.join(DATASET_DIR, f"sample_{index}.npy")
     np.save(file_path, sample)
 
-# Generate multiple samples
-NUM_SAMPLES = 100
+# # Generate multiple samples
+# NUM_SAMPLES = 100
 
-for i in range(NUM_SAMPLES):
-    grid, start, goal = generate_valid_grid(obstacle_density=0.2)
-    path = a_star_find_path(grid, start, goal)
-    save_sample(grid, path, i)
+# for i in range(NUM_SAMPLES):
+#     grid, start, goal = generate_valid_grid(obstacle_density=0.2)
+#     path = a_star_find_path(grid, start, goal)
+#     save_sample(grid, path, i)
+
+NUM_SAMPLES = 5000
+BATCH_SIZE = 1000
+
+for batch_start in range(0, NUM_SAMPLES, BATCH_SIZE):
+    for i in range(BATCH_SIZE):
+        index = batch_start + i
+        grid, start, goal = generate_valid_grid(obstacle_density=0.2)
+        path = a_star_find_path(grid, start, goal)
+        save_sample(grid, path, index)
+    print(f"Batch {batch_start // BATCH_SIZE + 1} saved.")
+
+
 
 # Check saved files
 saved_files = os.listdir(DATASET_DIR)

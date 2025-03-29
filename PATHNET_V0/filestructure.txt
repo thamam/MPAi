@@ -1,0 +1,21 @@
+pathnet/
+├── data/
+│   ├── __init__.py
+│   ├── generate_data.py  # Script to generate and save training data
+│   └── dataset.py        # Defines the PyTorch Dataset class
+├── model/
+│   ├── __init__.py
+│   └── cnn.py            # Defines the PathPlanningCNN model
+├── notebooks/
+│   └── PathNet_Workflow.ipynb # Notebook for end-to-end demonstration
+├── scripts/
+│   ├── __init__.py
+│   ├── train.py          # Script to train the model
+│   ├── evaluate.py       # Script to evaluate a trained model
+│   └── visualize_prediction.py # (Optional) Script to visualize model output
+├── utils/
+│   ├── __init__.py
+│   ├── a_star.py         # A* algorithm implementation
+│   └── grid_utils.py     # Grid generation and visualization functions
+├── README.md             # Updated project README
+└── requirements.txt      # Project dependencies (numpy, matplotlib, torch)
