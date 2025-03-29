@@ -19,3 +19,26 @@ pathnet/
 │   └── grid_utils.py     # Grid generation and visualization functions
 ├── README.md             # Updated project README
 └── requirements.txt      # Project dependencies (numpy, matplotlib, torch)
+
+
+
+pathnet/scripts/evaluate.py:
+    Load a pre-trained model (using torch.load and model.load_state_dict).
+    Load the test dataset/dataloader.
+    Run the evaluate function (copied or imported from train.py).
+    Print test metrics.
+
+pathnet/notebooks/PathNet_Workflow.ipynb:
+
+    Create a Jupyter Notebook.
+    Cell 1: Imports & Setup: Import necessary libraries (torch, numpy, matplotlib, os) and functions/classes from your pathnet modules (utils, data, model). Define constants like DATA_DIR, MODEL_PATH.
+    Cell 2: Data Generation (Optional): Call the data generation script/function (pathnet.data.generate_data.main()) if needed, or explain how to generate data.
+    Cell 3: Load Data: Instantiate GridPathDataset and DataLoader for train/val/test sets. Maybe visualize a sample grid and its ground truth path using grid_utils.plot_grid_with_path.
+    Cell 4: Define/Load Model: Instantiate the PathPlanningCNN model. Optionally, load pre-trained weights if available.
+    Cell 5: Training: Include the training loop (adapted from scripts/train.py). Run for a few epochs to demonstrate. Print training/validation loss.
+    Cell 6: Evaluation: Load the best model (if saved during training) and evaluate it on the test set using the evaluate function. Print test metrics (Loss, MAE).
+    Cell 7: Visualize Prediction:
+    Get a sample from the test set.
+    Run the model inference (model.eval(), with torch.no_grad(): pred = model(input_grid)).
+    Reshape the predicted path pred back into coordinates.
+    Use grid_utils.plot_grid_with_path to plot the grid, start, goal, ground truth path, and the predicted path.
